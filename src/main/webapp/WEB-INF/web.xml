@@ -2,7 +2,12 @@
  "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN"
  "http://java.sun.com/dtd/web-app_2_3.dtd" >
 
-<web-app>
+<web-app version="2.5"
+         xmlns="http://java.sun.com/xml/ns/javaee"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://java.sun.com/xml/ns/javaee
+	http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
+
     <context-param>
         <param-name>contextClass</param-name>
         <param-value>
@@ -11,8 +16,9 @@
     </context-param>
     <context-param>
         <param-name>contextConfigLocation</param-name>
-        <param-value>net.zuobin.config.InitConfig</param-value>
+        <param-value>com.lottery.archive.config.InitConfig</param-value>
     </context-param>
+
 
     <!-- Encoding Filter -->
     <filter>
@@ -32,9 +38,38 @@
         <url-pattern>/*</url-pattern>
     </filter-mapping>
 
-    <listener>
-        <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
-    </listener>
+    <!--<filter>
+        <filter-name>SourceEntityManagerInViewFilter</filter-name>
+        <filter-class>org.springframework.orm.jpa.support.OpenEntityManagerInViewFilter</filter-class>
+        <init-param>
+            <param-name>entityManagerFactoryBeanName</param-name>
+            <param-value>sourceEntityManagerFactory</param-value>
+        </init-param>
+        <init-param>
+            <param-name>persistenceUnitName</param-name>
+            <param-value>sourceEntityManager</param-value>
+        </init-param>
+    </filter>
+    <filter-mapping>
+        <filter-name>SourceEntityManagerInViewFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+    <filter>
+        <filter-name>ArchiveEntityManagerInViewFilter</filter-name>
+        <filter-class>org.springframework.orm.jpa.support.OpenEntityManagerInViewFilter</filter-class>
+        <init-param>
+            <param-name>entityManagerFactoryBeanName</param-name>
+            <param-value>archiveEntityManagerFactory</param-value>
+        </init-param>
+        <init-param>
+            <param-name>persistenceUnitName</param-name>
+            <param-value>archiveEntityManager</param-value>
+        </init-param>
+    </filter>
+    <filter-mapping>
+        <filter-name>ArchiveEntityManagerInViewFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>-->
 
     <servlet>
         <servlet-name>springmvc</servlet-name>
@@ -47,14 +82,20 @@
         </init-param>
         <init-param>
             <param-name>contextConfigLocation</param-name>
-            <param-value>net.zuobin.config.MvcConfig</param-value>
+            <param-value>com.lottery.archive.config.MvcConfig</param-value>
         </init-param>
         <load-on-startup>1</load-on-startup>
     </servlet>
+
     <servlet-mapping>
         <servlet-name>springmvc</servlet-name>
         <url-pattern>/</url-pattern>
     </servlet-mapping>
+
+
+    <listener>
+        <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+    </listener>
 
     <welcome-file-list>
         <welcome-file>index.jsp</welcome-file>

@@ -1,12 +1,10 @@
-package net.zuobin.config;
+package com.lottery.archive.config;
 
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.Import;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.servlet.config.annotation.DefaultServletHandlerConfigurer;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
-import org.springframework.web.servlet.config.annotation.PathMatchConfigurer;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 
 /**
@@ -14,19 +12,13 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
  * @date 16/6/8
  */
 @Configuration
-@ComponentScan(basePackages = "net.zuobin.controller", useDefaultFilters = false, includeFilters = @ComponentScan.Filter(Controller.class))
+@ComponentScan(basePackages = "com.lottery.archive.controler", useDefaultFilters = false, includeFilters = @ComponentScan.Filter(Controller.class))
 @EnableWebMvc
-@Import({ViewConfig.class})
-public class MvcConfig extends WebMvcConfigurerAdapter{
+public class MvcConfig extends WebMvcConfigurerAdapter {
 
     @Override
     public void configureDefaultServletHandling(DefaultServletHandlerConfigurer configurer) {
         configurer.enable();
     }
 
-    @Override
-    public void configurePathMatch(PathMatchConfigurer configurer) {
-        super.configurePathMatch(configurer);
-        configurer.setUseSuffixPatternMatch(false);
-    }
 }
